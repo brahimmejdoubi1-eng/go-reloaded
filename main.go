@@ -1,4 +1,4 @@
-package main 
+package main
 
 import (
 	"fmt"
@@ -15,7 +15,16 @@ func main() {
 		fmt.Println("Error reading file:", err)
 		os.Exit(1)
 	}
-	text := string(data) 
+	text := string(data)
+
+	text = Hex(text)
+	text = Bin(text)
+	text = ToUpper(text)
+	text = ToLower(text)
+	text = Cap(text)
+	text = Articles(text)
+	text = Quotes(text)
+	text = Punct(text)
 
 	err = os.WriteFile(os.Args[2], []byte(text), 0644)
 	if err != nil {
