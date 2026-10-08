@@ -18,7 +18,3 @@ func Hex(str string) string {
 	}
 	return strings.Join(r, " ")
 }
-
-// func main() {
-// 	fmt.Println(Hex("1E (hex) files were added"))
-// }

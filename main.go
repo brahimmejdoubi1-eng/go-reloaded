@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -10,6 +11,11 @@ func main() {
 		fmt.Println("usage: go run . <input file> <output file>")
 		os.Exit(1)
 	}
+	if strings.HasSuffix(os.Args[2], ".go"){
+		fmt.Println("Error: output file cannot be a .go file")
+		os.Exit(1)
+	}
+
 	data, err := os.ReadFile(os.Args[1])
 	if err != nil {
 		fmt.Println("Error reading file:", err)

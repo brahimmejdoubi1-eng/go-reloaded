@@ -18,7 +18,3 @@ func Bin(str string) string {
 	}
 	return strings.Join(r, " ")
 }
-
-// func main() {
-// 	fmt.Println(Bin("10 (bin) years"))
-// }
