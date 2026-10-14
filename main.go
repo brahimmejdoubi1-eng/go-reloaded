@@ -11,7 +11,7 @@ func main() {
 		fmt.Println("usage: go run . <input file> <output file>")
 		os.Exit(1)
 	}
-	if strings.HasSuffix(os.Args[2], ".go"){
+	if strings.HasSuffix(os.Args[2], ".go") {
 		fmt.Println("Error: output file cannot be a .go file")
 		os.Exit(1)
 	}
@@ -22,15 +22,19 @@ func main() {
 		os.Exit(1)
 	}
 	text := string(data)
-
-	text = Hex(text)
-	text = Bin(text)
-	text = ToUpper(text)
-	text = ToLower(text)
-	text = Cap(text)
-	text = Articles(text)
-	text = Quotes(text)
-	text = Punct(text)
+	lines := strings.Split(text, "\n")
+	for i, line := range lines {
+		line = Hex(line)
+		line = Bin(line)
+		line = ToUpper(line)
+		line = ToLower(line)
+		line = Cap(line)
+		line = Articles(line)
+		line = Punct(line)
+		line = Quotes(line)
+		lines[i]=line
+	}
+	text = strings.Join(lines, "\n")
 
 	err = os.WriteFile(os.Args[2], []byte(text), 0644)
 	if err != nil {
