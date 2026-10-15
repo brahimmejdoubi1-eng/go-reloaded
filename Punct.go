@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+// IsPunc checks if the character is a punctuation
 func IsPunc(r rune) bool {
 	if r == '.' || r == ',' || r == '!' || r == '?' || r == ';' || r == ':' {
 		return true
@@ -11,6 +12,8 @@ func IsPunc(r rune) bool {
 	return false
 }
 
+// Punct handles punctuations removes space before them
+// an add space after them
 func Punct(str string) string {
 	result := ""
 	for i := 0; i < len(str); i++ {

@@ -11,16 +11,18 @@ func main() {
 		fmt.Println("usage: go run . <input file> <output file>")
 		os.Exit(1)
 	}
-	if strings.HasSuffix(os.Args[2], ".go") {
-		fmt.Println("Error: output file cannot be a .go file")
+	// protecting the code
+	if !strings.HasSuffix(os.Args[2], ".txt") {
+		fmt.Println("Error: output file must be .txt file")
 		os.Exit(1)
 	}
-
+	// read the input file
 	data, err := os.ReadFile(os.Args[1])
 	if err != nil {
 		fmt.Println("Error reading file:", err)
 		os.Exit(1)
 	}
+	// Aplly every rule to each line
 	text := string(data)
 	lines := strings.Split(text, "\n")
 	for i, line := range lines {
@@ -32,11 +34,11 @@ func main() {
 		line = Articles(line)
 		line = Punct(line)
 		line = Quotes(line)
-		lines[i]=line
+		lines[i] = line
 	}
 	text = strings.Join(lines, "\n")
-
-	err = os.WriteFile(os.Args[2], []byte(text), 0644)
+	// write result
+	err = os.WriteFile(os.Args[2], []byte(text), 0o644)
 	if err != nil {
 		fmt.Println("error writing file:", err)
 		os.Exit(1)
